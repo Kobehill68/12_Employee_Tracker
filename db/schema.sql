@@ -4,12 +4,9 @@ CREATE DATABASE employee_trackerDB;
 
 USE employee_trackerDB;
 
-CREATE TABLE employee (
+CREATE TABLE department (
     id INT AUTO_INCREMENT,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    role_id INT NOT NULL,
-    manager_id INT,
+    name VARCHAR(30),
     PRIMARY KEY (id)
 );
 
@@ -21,9 +18,12 @@ CREATE TABLE role (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE department (
+CREATE TABLE employee (
     id INT AUTO_INCREMENT,
-    _name VARCHAR(30),
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT NOT NULL,
+    manager_id INT,
     PRIMARY KEY (id)
 );
 
