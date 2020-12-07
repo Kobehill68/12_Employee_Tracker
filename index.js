@@ -12,7 +12,7 @@ const startApp = () => {
         message: "Select an option",
         choices: startScreen
     }).then((answer) => {
-        switch(answer.selectMenu) {
+        switch (answer.selectMenu) {
             case 'View all Employees':
                 showAllEmp();
                 break;
@@ -38,7 +38,7 @@ const startApp = () => {
                 connection.end();
                 break;
         }
-    }) 
+    })
 
 }
 
@@ -51,14 +51,68 @@ const showAllEmp = () => {
 
 const showAllByDept = () => {
     connection.query("SELECT * FROM department", (err, results) => {
-        if(err) throw err;
+        if (err) throw err;
         console.log(results);
         startApp();
     })
 }
 
 const addEmployee = () => {
-    
+    inquirer.prompt([{
+        type: 'input',
+        message: "What's the employees first name?",
+        name: 'firstName',
+    },
+    {
+        type: 'input',
+        message: "What's the employees last name?",
+        name: 'lastName',
+    },
+    {
+        type: 'number',
+        message: "What's the employees role ID?",
+        name: 'roleID',
+    },
+    {
+        type: 'number',
+        message: "What's the employees manager's ID?",
+        name: 'managerID',
+    }
+    ]).then((res) => {
+        connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.firstName, res.lastName, res.roleID, res.managerID], function (err, results) {
+            if (err) throw err;
+            console.table("Successfully Inserted");
+        })
+    })
+}
+
+const removeEmployee = () => {
+    inquirer.prompt([
+        {
+          type: "input",
+          message: "Which employee would you like to remove?",
+          name: "title"
+        }
+      ]).then((res) => {
+        connection.query('DELETE FROM employee WHERE (?);', [res.employee],
+          function (err, results) {
+            if (err) throw err;
+            console.log("Successfully Removed");
+            beginApp();
+          })
+      })
+}
+
+const updateRole = () => {
+
+}
+
+const addDept = () => {
+
+}
+
+const addRole = () => {
+
 }
 
 
