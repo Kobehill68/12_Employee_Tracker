@@ -1,7 +1,7 @@
 const inquirer = require("inquirer")
 const mysql = require("mysql")
 const consoleOutPutter = require("console.table")
-const queries = require("db/queries.js")
+const queries = require("./db/queries")
 
 
 
