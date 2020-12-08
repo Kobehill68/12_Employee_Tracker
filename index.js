@@ -19,12 +19,55 @@ connection.connect(function(err) {
 
 function start() {
     inquirer.prompt([{
-
+        name: "actionToPerform",
+      type: "list",
+      message: "What would you like to do--[ADD], [VIEW], [UPDATE], or [DELETE]--a table? Select EXIT to end",
+      choices: ["ADD", "VIEW", "UPDATE", "DELETE", "EXIT"]
     }])
+    .then((answer) => {
+        switch (answer.actionToPerform) {
+          case "ADD":
+            addToTable(); //call add
+            break;
+          case "VIEW": // view
+            viewTable();
+            break;
+          case "UPDATE": // update
+            updateEmployee();
+            break;
+          case "DELETE":
+            removeEmployee(); // only delete employees for now
+            break;
+          default:
+            connection.end();
+            break;
+        }
+    });
 }
 
 function addToTable() {
-
+    inquirer // which table do you want to add to?  See the choices
+    .prompt([{
+      name: "whichTableToAddTo",
+      type: "list",
+      message: "Do you want to add a [DEPARTMENT], a [ROLE], or an [EMPLOYEE]?",
+      choices: ["DEPARTMENT", "ROLE", "EMPLOYEE"]
+    }]) 
+    .then((answer) => { // which one did the user choose?
+        switch (answer.whichTableToAddTo) {
+          case "DEPARTMENT":
+            addDepartment();
+            break;
+          case "ROLE":
+            addRole();
+            break;
+          case "EMPLOYEE":
+            addEmployee();
+            break;
+          default:
+            break;
+        }
+    });
 }
 
 function addDepartment() {
