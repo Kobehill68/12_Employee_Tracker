@@ -3,6 +3,7 @@ USE employee_trackerDB;
 INSERT INTO department (department_name) VALUES("Engineer");
 INSERT INTO department (department_name) VALUES("Sales");
 INSERT INTO department (department_name) VALUES("Food");
+
 INSERT INTO department (department_name) VALUES("Human Resources");
 INSERT INTO department (department_name) VALUES("Accounting");
 INSERT INTO department (department_name) VALUES("Programming");
